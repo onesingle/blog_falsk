@@ -1,0 +1,41 @@
+<!doctype html>
+<title>{{ config['name'] }}</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+<body>
+<div class="container">
+<header>
+	<a id="title" href="/"><h2>{{ config['name'] }}</h2></a>
+    {% if session.logged_in %}
+    	<p class="login"><a href="{{ url_for('logout') }}">Logout</a><a href="{{ url_for('new_post') }}">New Post</a></p>
+    {% else %}
+    	<p class="login"><a href="{{ url_for('login') }}">Login</a></p>
+    {% endif %}
+</header>
+{% block body %}
+
+
+<form action="/new_post" method="post">
+	<p><label for="title">Title</label><input type="text" name="title" id="title" /></p>
+	<p><textarea rows=10 cols=50 name="content" id="body"> </textarea></p>
+	<p><label for="tags">Tags (comma seperated)</label><input type="text" name="tags" id="tags"></p>
+	<p><label for="category">Category</label><select name="category" id="category">
+	{% for category in categories %}
+		
+		<option value="{{ category.name }}">{{ category.name }}</option>
+	{% else %}
+		{% print "nothing!!"%}
+		<!--pass-->
+		
+	{% endfor %}
+	</select></p>
+	
+
+	<input type="submit" value="Submit" />
+	
+	
+</form>
+<div>
+	<p>Time is  {{ created_time }} </p>
+</div>
+{% endblock %}

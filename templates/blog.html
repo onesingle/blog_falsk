@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
+
+<head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CoolBlue</title>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/coolblue.css" />
+
+    <!--[if lt IE 9]>
+	    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-1.6.1.min.js"><\/script>')</script>
+
+    <script src="/static/js/scrollToTop.js"></script>
+	<script src="/static/js/myjs.js"></script>
+</head>
+
+<body id="top">
+
+<!--header -->
+<div id="header-wrap"><header>
+
+ 	<hgroup>
+        <h1><a href="index.html">Coolblue</a></h1>
+        <h3>Just Another Styleshout Template</h3>
+    </hgroup>
+
+    <nav>
+		<ul>
+			<li><a href="index.html">Home</a><span></span></li>
+			<li><a href="style.html">Style Demo</a><span></span></li>
+			<li id="current"><a href="blog.html">Archives</a><span></span></li>
+			<li><a href="archive.html">Blog</a><span></span></li>
+			<li><a href="index.html">Support</a><span></span></li>
+			<li><a href="index.html">About</a><span></span></li>
+		</ul>
+	</nav>
+
+    <div class="subscribe">
+        <span>Subscribe:</span> <a href="#">Email</a> | <a href="#">RSS</a>
+    </div>
+
+   <form id="quick-search" method="get" action="index.html">
+      <fieldset class="search">
+         <label for="qsearch">Search:</label>
+         <input class="tbox" id="qsearch" type="text" name="qsearch" value="Search..." title="Start typing and hit ENTER" />
+         <button class="btn" title="Submit Search">Search</button>
+      </fieldset>
+   </form>
+
+<!--/header-->
+</header></div>
+	
+<!-- content-wrap -->
+<div id="content-wrap">
+
+    <!-- content -->
+    <div id="content" class="clearfix">
+
+   	    <!-- main -->
+        <div id="main">
+
+            <!-- post -->
+      	    <article class="post single">
+
+                <!-- primary -->
+         	    <div class="primary">
+
+            	    <h2><a href="index.html">{{article.title}}</a></h2>
+
+                    <p class="post-info"><span>Filed under</span> <a href="index.html">templates</a>, <a href="index.html">internet</a></p>
+
+                    <div class="image-section">
+              		    <img src="/static/images/img-post.jpg" alt="image post" height="206" width="498"/>
+         	        </div>
+
+				    <p>{{article.content }}</p>
+
+                <!-- /primary -->
+                </div>
+
+
+            <aside>
+
+            	<p class="dateinfo">JAN<span>31</span></p>
+
+                <div class="post-meta">
+               	    <h4>Post Info</h4>
+                    <ul>
+                  	    <li class="user"><a href="#">Erwin</a></li>
+                        <li class="time"><a href="#">12:30 PM</a></li>
+                        <li class="comment"><a href="#">10 Comments</a></li>
+                        <li class="permalink"><a href="#">Permalink</a></li>
+                    </ul>
+                </div>
+
+               <div class="post-meta">
+                    <h4>tags</h4>
+					<ul class="tags">
+			         	<li><a href="index.html" rel="tag">Clean</a></li>
+			            <li><a href="index.html" rel="tag">Blog</a></li>
+			            <li><a href="index.html" rel="tag">Minimal</a></li>
+			         </ul>
+               </div>
+
+            </aside>
+
+        <!-- /post -->
+        </article>
+
+        <!-- post-bottom-section -->
+        <div class="post-bottom-section">
+
+		    <h4>3 comments</h4>
+
+            <div class="primary">
+				{% for c in comments%}
+            	<ol class="commentlist">
+
+						<li class="depth-1">
+
+							<div class="comment-info">
+								<img alt="" src="/static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+								<cite>
+									<a href="index.html">{{c.username}}</a> Says: <br />
+									<span class="comment-data"><a href="#comment-{{c.reply_to_comment.id}}" title="">{{ c.post_date}} pm</a></span>
+								</cite>
+							</div>
+
+							<div class="comment-text">
+								<p>{{ c.content }}</p>
+								<p>Comments are great!</p>
+
+								<div id= "butreplay" class="reply">
+									<a rel="nofollow" class="comment-reply-link" href="#comment-{{c.id}}">Reply11</a>
+		 						</div>
+							</div>
+							
+							<ul class="children">
+								
+								<li class="depth-2">
+									{%if  c.reply_to_comment %}
+									<div class="comment-info">
+										<img alt="" src="static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+										<cite>
+											<a href="index.html">{{ c.reply_to_comment.username}}</a> Says: <br />
+											<span class="comment-data"><a href="#" title="">{{c.reply_to_comment. post_date}} pm</a></span>
+										</cite>
+									</div>
+
+									<div class="comment-text">
+										<p>And here is a threaded comment.</p>
+										<div id= "butreplay" class="reply">
+											<a rel="nofollow" class="comment-reply-link" href="index.html">Reply</a>
+		 								</div>
+									</div>
+								{% endif %}
+								</li>	
+						{% endfor %}
+								<li class="depth-2">
+
+									<div class="comment-info">
+										<img alt="" src="static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+										<cite>
+											<a href="index.html">Erwin</a> Says: <br />
+											<span class="comment-data"><a href="#" title="">January 31st, 2010 at 8:15 pm</a></span>
+										</cite>
+									</div>
+
+									<div class="comment-text">
+										<p>And here is another threaded comment.</p>
+
+										<div class="reply">
+											<a rel="nofollow" class="comment-reply-link" href="index.html">Reply</a>
+		 								</div>
+									</div>
+
+									<ul class="children">
+
+										<li class="depth-3">
+
+											<div class="comment-info">
+												<img alt="" src="static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+												<cite>
+													<a href="index.html">Erwin</a> Says: <br />
+													<span class="comment-data"><a href="#" title="">January 31st, 2010 at 8:10 pm</a></span>
+												</cite>
+											</div>
+
+											<div class="comment-text">
+												<p>Threaded comments are cool!</p>
+
+												<div class="reply">
+													<a rel="nofollow" class="comment-reply-link" href="index.html">Reply</a>
+		 										</div>
+											</div>
+
+										</li>
+
+									</ul>
+
+								</li>
+
+							</ul>
+
+						</li>
+
+						<li class="thread-alt depth-1">
+
+							<div class="comment-info">
+								<img alt="" src="static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+								<cite>
+									<a href="index.html">Erwin</a> Says: <br />
+									<span class="comment-data"><a href="#comment-63" title="">January 31st, 2010 at 8:00 pm</a></span>
+								</cite>
+							</div>
+
+							<div class="comment-text">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero.
+								Suspendisse bibendum.</p>
+
+								<div class="reply">
+									<a rel="nofollow" class="comment-reply-link" href="index.html">Reply</a>
+		 						</div>
+							</div>
+
+							<ul class="children">
+
+								<li class="depth-2">
+
+									<div class="comment-info">
+										<img alt="" src="static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+										<cite>
+											<a href="index.html">Erwin</a> Says: <br />
+											<span class="comment-data"><a href="#" title="">January 31st, 2010 7:35 pm</a></span>
+										</cite>
+									</div>
+
+									<div class="comment-text">
+										<p>Donec libero. Suspendisse bibendum.</p>
+
+										<div class="reply">
+											<a rel="nofollow" class="comment-reply-link" href="index.html">Reply</a>
+		 								</div>
+									</div>
+
+                           <ul class="children">
+
+										<li class="depth-3">
+
+											<div class="comment-info">
+												<img alt="" src="static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+												<cite>
+													<a href="index.html">Erwin</a> Says: <br />
+													<span class="comment-data"><a href="#" title="">January 31st, 2010 at 7:20 pm</a></span>
+												</cite>
+											</div>
+
+											<div class="comment-text">
+												<p>Threaded comments are cool!</p>
+
+												<div class="reply">
+													<a rel="nofollow" class="comment-reply-link" href="index.html">Reply</a>
+		 										</div>
+											</div>
+
+										</li>
+
+									</ul>
+
+
+
+								</li>
+
+							</ul>
+
+						</li>
+
+						<li class="depth-1">
+
+							<div class="comment-info">
+								<img alt="" src="static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+								<cite>
+									<a href="index.html">Erwin</a> Says: <br />
+									<span class="comment-data"><a href="#comment-63" title="">January 31st, 2010  at 6:08 pm</a></span>
+								</cite>
+							</div>
+
+							<div class="comment-text">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum.
+								Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu
+								posuere nunc justo tempus leo.</p>
+
+								<div class="reply">
+									<a rel="nofollow" class="comment-reply-link" href="index.html">Reply</a>
+		 						</div>
+
+							</div>
+
+							<ul class="children">
+
+								<li class="depth-2">
+
+									<div class="comment-info">
+										<img alt="" src="static/images/gravatar.jpg" class="avatar" height="42" width="42" />
+										<cite>
+											<a href="index.html">Erwin</a> Says: <br />
+											<span class="comment-data"><a href="#comment-63" title="">January 31st, 2010 at 6:08 pm</a> </span>
+										</cite>
+									</div>
+
+									<div class="comment-text">
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+
+										<div class="reply">
+											<a rel="nofollow" class="comment-reply-link" href="index.html">Reply</a>
+		 								</div>
+									</div>
+
+								</li>
+
+							</ul>
+
+						</li>
+
+                <!-- /comment-list -->
+				</ol>
+
+            <!-- /primary -->
+            </div>
+
+         </div>
+
+         <div id= "post-bottom-section" class="post-bottom-section">
+
+		    <h4>Leave a Reply</h4>
+
+            <div class="primary">
+
+            	<form action="/comments/add" method="post" id="commentform">
+				<input type="hidden" name="reply_to_comment" id="id_reply_to_comment" />
+				<input type="hidden" name="article" value="{{ article.id }}" id="id_article" />
+               	    <div>
+					    <label for="name">Name <span>*</span></label>
+						<input id="name" name="name" value="Your Name" type="text" tabindex="1" />
+					</div>
+                    <div>
+						<label for="email">Email Address <span>*</span></label>
+						<input id="email" name="email" value="Your Email" type="text" tabindex="2" />
+					</div>
+                    <div>
+						<label for="website">Website</label>
+						<input id="website" name="website" value="Your Website" type="text" tabindex="3" />
+					</div>
+                    <div>
+						<label for="message">Your Message <span>*</span></label>
+						<textarea id="message" name="message" rows="10" cols="18" tabindex="4"></textarea>
+					</div>
+                    <div class="no-border">
+					    <input class="button" type="submit" value="Submit Comment" tabindex="5" />
+					</div>
+
+               </form>
+
+            </div>
+
+         </div>
+
+        <!-- /main -->
+        </div>
+		{% include 'sidebar.html' %}
+        
+		</div>
+
+    <!-- content -->
+	</div>
+
+<!-- /content-out -->
+</div></div>
+</div>
+{% include 'footer.html' %}
